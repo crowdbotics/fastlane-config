@@ -28,7 +28,7 @@ platform(:ios) do
   lane(:tests) do
     run_tests(
       workspace: workspace_name,
-      scheme: base_name,
+      scheme: @base_name,
       build_for_testing: true
     )
   end
@@ -71,7 +71,7 @@ platform(:ios) do
 
     update_app_identifier(
       xcodeproj: filename,
-      plist_path: "#{base_name}/Info.plist",
+      plist_path: "#{@base_name}/Info.plist",
       app_identifier: identifier
     )
 
@@ -97,7 +97,7 @@ platform(:ios) do
     }
 
     build_app(
-      scheme: base_name,
+      scheme: @base_name,
       export_method: 'app-store',
       xcargs: settings_to_override,
       output_name: 'app-release.ipa'
@@ -134,7 +134,7 @@ platform(:ios) do
       configuration: 'Release',
       sdk: 'iphonesimulator',
       derivedDataPath: tmp_path,
-      scheme: base_name
+      scheme: @base_name
     )
 
     app_path = Dir[File.join(tmp_path, '**', '*.app')].last
@@ -144,7 +144,7 @@ platform(:ios) do
     appetize(
       path: zipped_bundle,
       platform: 'ios',
-      note: base_name
+      note: @base_name
     )
 
     update_url(
