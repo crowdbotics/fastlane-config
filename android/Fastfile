@@ -71,7 +71,7 @@ platform(:android) do
     appetize(
       path: get_last_apk_path,
       platform: 'android',
-      note: base_name
+      note: @base_name
     )
 
     update_url(
